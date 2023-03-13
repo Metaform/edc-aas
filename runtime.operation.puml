@@ -1,0 +1,40 @@
+@startuml
+!pragma layout smetana
+
+!include ./diagram.styles.puml
+
+'autonumber
+
+group Initial Provisioning (1-time)
+
+group Catalog Request
+"Client Provisioning App" as PA -> "Provider Catalog": CatalogRequestMessage
+PA <- "Provider Catalog": : Catalog
+end
+
+group Contract Negotiation
+PA -> "Client Connector" as CC: Contract Request
+CC -> "Provider Connector" as PConn: ContractRequestMessage
+CC <- PConn: ContractNegotiationEventMessage (finalized)
+PA <- CC: Finalized
+end
+
+group Transfer Process
+PA -> CC: Transfer Request
+CC -> PConn: TransferRequestMessage
+PConn -> CC: TransferStartMessage with DataAddress/EDR
+CC->CC: Store EDR
+CC -> PA: Transfer Started
+end
+
+end
+
+
+group AAS Requests (n-times)
+
+"Client App" as CA -> "Client Data Plane" as CDA: Data Request by ContractId w/ AAS asset id
+CDA -> Provider: EDR from DataAddress
+CDA <-Provider
+CA <- CDA: AAS asset
+end
+@enduml
