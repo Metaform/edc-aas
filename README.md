@@ -68,7 +68,8 @@ There are two practical ways to model the relationship between IDS datasets and 
 1. An IDS dataset has a 1..1 relationship with an AAS asset.
 2. An IDS dataset has a 1..N relationship with an AAS asset.
 
-In cases where there are many AAS assets, Option 1 is suboptimal since it requires a contract negotiation for each AAS request. Option 2 allows a single IDS dataset to represent more
+In cases where there are many AAS assets, Option 1 is suboptimal since it requires a contract negotiation for each AAS request. Option 2 allows a single IDS dataset to represent
+more
 than one AAS asset, which aligns with having one contract negotiation and transfer process span many AAS requests. The latter approach should be preferred unless there is a
 compelling business requirement to do otherwise.
 
@@ -113,13 +114,13 @@ Runtime operation is divided into two steps, _Initial Provisioning_ and _Request
 ![](./runtime.operation.png)
 
 The Initial Provisioning step is performed once to discover IDS datasets, establish one or more contract negotiations, and start one or more transfer processes. When the transfer
-processes are started, the provider connector will send a start messages containing an IDS `dataAddress` (an EDC EDR). The EDRs will be stored by contract id and made available to
-the `DataPlane`. The transfer processes are non-finite and will remain in the STARTED state indefinitely.
+processes are started, the provider connector will send a start messages containing an IDS `dataAddress` (an EDC EDR). The data addresses will be stored by contract id and made
+available to the `DataPlane`. The transfer processes are non-finite and will remain in the STARTED state indefinitely.
 
 At this point, a Client App can issue requests for AAS assets by interacting directly with the `DataPlane` and providing the associated contract id and AAS asset id. Note that
-obtaining the contract id may require resolving and selecting one or more contract ids by IDS dataset id (obtained from the AAS Registry). The IDS dataset id alone is not sufficient
-since more than one contract may exist for a given asset. The `DataPlane` will resolve the EDR associated with the contract id and route the request to the correct provider
-connector.
+obtaining the contract id may require resolving and selecting one or more contract ids by IDS dataset id (obtained from the AAS Registry). The IDS dataset id alone is not
+sufficient since more than one contract may exist for a given asset. The `DataPlane` will resolve the EDR associated with the contract id and route the request to the correct
+provider connector.
 
 > Note that the above architecture requires a small, custom `Data Plane` API extension.
 
