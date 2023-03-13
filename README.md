@@ -61,7 +61,7 @@ An **IDS dataset** represents data that can be shared with other dataspace parti
 - may include 0..N data "parts" such as messages, files, or archives
 - may include a finite or infinite set of data that is not temporarily bound
 
-### Attaching IDS Dataset to the AAS Metamodel
+### Attaching IDS Datasets to the AAS Metamodel
 
 There are two practical ways to model the relationship between IDS datasets and AAS assets:
 
