@@ -122,7 +122,8 @@ obtaining the contract id may require resolving and selecting one or more contra
 sufficient since more than one contract may exist for a given asset. The `DataPlane` will resolve the EDR associated with the contract id and route the request to the correct
 provider connector.
 
-> Note that the above architecture requires a small, custom `Data Plane` API extension.
+> Note that the above architecture requires a small, custom data plane API. This API will be implemented as an EDC Data Plane extension. It will be possible to support the same
+> API in a custom data plane implementation.
 
 ### RBAC Security
 
