@@ -108,7 +108,7 @@ the next section.
 
 Runtime operation is divided into two steps, _Initial Provisioning_ and _Requests_ as depicted in the following sequence diagram:
 
-![](/Users/jim/workspace/metaform/edc-aas/runtime.operation.png)
+![](./runtime.operation.png)
 
 The Initial Provisioning step is performed once to discover EDC assets, establish one or more contract negotiations, and start one or more transfer processes. When the transfer
 processes are started, the provider connector will send a start messages containing an IDS `dataAddress` (EDC EDR). The EDRs will be stored by contract id and made available to
