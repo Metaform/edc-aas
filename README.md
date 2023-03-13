@@ -1,24 +1,26 @@
-# Technical Specification for Applying EDC Usage Control to AAS data
+# Technical Specification for Applying IDS Usage Control to AAS data
 
-This document is a technical specification for enabling EDC usage control with AAS. Its goals are to define an AAS-EDC integration that:
+This document is a technical specification for enabling IDS usage control with AAS. Its goals are to define an AAS-IDS integration that:
 
-1. Codifies best-practices for modelling AAS submodels as EDC assets.
-2. Promotes network-wide interoperability by defining how EDC asset and endpoint information is conveyed in AAS submodel descriptors.
+1. Codifies best-practices for modelling AAS submodels as IDS datasets.
+2. Promotes network-wide interoperability by defining how IDS datasets and endpoint information is conveyed in AAS submodel descriptors.
 
 It is **not** a goal of this specification to address syntactic or semantic interoperability of AAS submodels.
 
-## EDC and IDS Dataspace Protocol Design Principles
+> An IDS dataset is equivalent to an EDC asset.
 
-The IDS Dataspace Protocol and EDC define the following constructs:
+## IDS Dataspace Protocol Design Principles
 
-- **Asset (Dataset) Catalog** - A set of participant data and usage policies that can be shared with another participant
+The IDS Dataspace Protocol and IDS define the following constructs:
+
+- **Dataset Catalog** - A set of participant data and usage policies that can be shared with another participant
 - **Contract Negotiation Process** - The process of establishing a contract agreement governing usage policy between two dataspace participants for an asset
 - **Data Transfer Process** - A data connection between two participants based on a contract agreement. The connection may be logical (e.g. there is no physical socket or other
   compute resources dedicated to it). Furthermore, a data transfer process is only associated with a single asset.
 - **Data Plane** - A technical system tasked with providing access to the data for an asset. A data plane will typically be responsible for transferring data from one participant
   to another using a wire protocol.
 
-One of the fundamental IDS/EDC design tenets is that contract negotiations and transfer processes **should be** established up front whenever possible. Let's start with
+One of the fundamental IDS design tenets is that contract negotiations and transfer processes **should be** established up front whenever possible. Let's start with
 sharing machine learning data, where upfront setup is not critical. A client participant engages in the following steps:
 
 1. Access a provider catalog
@@ -41,7 +43,7 @@ may conclude a single contract agreement and leave a transfer process open indef
 
 AAS data will be modelled based on this approach.
 
-## The AAS Metamodel and EDC Assets
+## The AAS Metamodel and IDS Datasets
 
 ### AAS Assets
 
@@ -51,28 +53,28 @@ production systems, equipment, machines, components, produced products and raw m
 An **AAS asset** may be a composition (i.e. contain other assets) and have more than one representation (submodel). As a metamodel, AAS includes the concepts of `instance`
 and `type` defined as a `kind`. The AAS metamodel can be expressed as a hierarchical graph with `contains` and `derivedFrom` edges.
 
-### IDS Datasets/EDC Assets
+### IDS Datasets
 
-An **IDS dataset/EDC asset** represents data that can be shared with other dataspace participants. An IDS dataset/EDC asset:
+An **IDS dataset** represents data that can be shared with other dataspace participants. An IDS dataset:
 
 - is associated with 1..N **offers**.
 - may include 0..N data "parts" such as messages, files, or archives
 - may include a finite or infinite set of data that is not temporarily bound
 
-### Attaching IDS Dataset/EDC Assets to the AAS Metamodel
+### Attaching IDS Dataset to the AAS Metamodel
 
-There are two practical ways to model the relationship between EDC and AAS assets:
+There are two practical ways to model the relationship between IDS datasets and AAS assets:
 
-1. An IDS dataset/EDC asset has a 1..1 relationship with an AAS asset.
-2. An IDS dataset/EDC asset has a 1..N relationship with an AAS asset.
+1. An IDS dataset has a 1..1 relationship with an AAS asset.
+2. An IDS dataset has a 1..N relationship with an AAS asset.
 
-In cases where there are many AAS assets, Option 1 is suboptimal since it requires a contract negotiation for each AAS request. Option 2 allows a single EDC asset to represent more
+In cases where there are many AAS assets, Option 1 is suboptimal since it requires a contract negotiation for each AAS request. Option 2 allows a single IDS dataset to represent more
 than one AAS asset, which aligns with having one contract negotiation and transfer process span many AAS requests. The latter approach should be preferred unless there is a
 compelling business requirement to do otherwise.
 
 #### The IDS Endpoint and `protocolInformation` type
 
-The association between IDS datasets/EDC assets and AAS assets will be made available in an AAS Registry using IDS-specific `protocolInformation` entry for an endpoint in an asset
+The association between IDS datasets and AAS assets will be made available in an AAS Registry using IDS-specific `protocolInformation` entry for an endpoint in an asset
 or submodel descriptor. With this method, it is possible to support either of the two modelling approaches specified in the previous section. In the case where the association is
 1..N, the endpoint and `protocolInformation` entry can be included in the POSTed AAS descriptor, or the AAS Registry may include an implementation-specific mechanism for
 defining endpoint and `protocolInformation` entries for a category of AAS types.
@@ -110,12 +112,12 @@ Runtime operation is divided into two steps, _Initial Provisioning_ and _Request
 
 ![](./runtime.operation.png)
 
-The Initial Provisioning step is performed once to discover EDC assets, establish one or more contract negotiations, and start one or more transfer processes. When the transfer
-processes are started, the provider connector will send a start messages containing an IDS `dataAddress` (EDC EDR). The EDRs will be stored by contract id and made available to
-the `DataPlane`. The transfer processes are non-finite EDC transfers and will remain in the STARTED state indefinitely.
+The Initial Provisioning step is performed once to discover IDS datasets, establish one or more contract negotiations, and start one or more transfer processes. When the transfer
+processes are started, the provider connector will send a start messages containing an IDS `dataAddress` (an EDC EDR). The EDRs will be stored by contract id and made available to
+the `DataPlane`. The transfer processes are non-finite and will remain in the STARTED state indefinitely.
 
 At this point, a Client App can issue requests for AAS assets by interacting directly with the `DataPlane` and providing the associated contract id and AAS asset id. Note that
-obtaining the contract id may require resolving and selecting one or more contract ids by EDC asset id (obtained from the AAS Registry). The EDC asset id alone is not sufficient
+obtaining the contract id may require resolving and selecting one or more contract ids by IDS dataset id (obtained from the AAS Registry). The IDS dataset id alone is not sufficient
 since more than one contract may exist for a given asset. The `DataPlane` will resolve the EDR associated with the contract id and route the request to the correct provider
 connector.
 
