@@ -23,7 +23,7 @@ group Transfer Process
 PA -> CC: Transfer Request
 CC -> PConn: TransferRequestMessage
 PConn -> CC: TransferStartMessage with DataAddress/EDR
-CC->CC: Store EDR
+CC-> "Token Registry" as TR: Store EDR
 CC -> PA: Transfer Started
 end
 
@@ -32,9 +32,11 @@ end
 
 group AAS Requests (n-times)
 
-"Client App" as CA -> "Client Data Plane" as CDA: Data Request by ContractId w/ AAS asset id
-CDA -> Provider: EDR from DataAddress
-CDA <-Provider
+"Client App" as CA -> TR: Get EDRs for Dataset Id
+CA <- TR: EDRs
+CA -> "Client Data Plane" as CDA: EDR w/ AAS asset id
+CDA -> Provider: EDR w/ AAS asset id
+CDA <-Provider: AAS asset
 CA <- CDA: AAS asset
 end
 @enduml

@@ -114,16 +114,13 @@ Runtime operation is divided into two steps, _Initial Provisioning_ and _Request
 ![](./runtime.operation.png)
 
 The Initial Provisioning step is performed once to discover IDS datasets, establish one or more contract negotiations, and start one or more transfer processes. When the transfer
-processes are started, the provider connector will send a start messages containing an IDS `dataAddress` (an EDC EDR). The data addresses will be stored by contract id and made
-available to the `DataPlane`. The transfer processes are non-finite and will remain in the STARTED state indefinitely.
+processes are started, the provider connector will send a start messages containing an IDS `dataAddress` (an EDC EDR). The data addresses will be stored by dataset id in
+a `TokenRegistry`. The transfer processes are non-finite and will remain in the STARTED state indefinitely.
 
-At this point, a Client App can issue requests for AAS assets by interacting directly with the `DataPlane` and providing the associated contract id and AAS asset id. Note that
-obtaining the contract id may require resolving and selecting one or more contract ids by IDS dataset id (obtained from the AAS Registry). The IDS dataset id alone is not
-sufficient since more than one contract may exist for a given asset. The `DataPlane` will resolve the EDR associated with the contract id and route the request to the correct
-provider connector.
+At this point, a Client App can issue requests for AAS assets by interacting directly with the `TokenRegistry` and `DataPlane`. In the case where multiple EDRs are returned, the
+client will need to select one or delegate to an operator.
 
-> Note that the above architecture requires a small, custom data plane API. This API will be implemented as an EDC Data Plane extension. It will be possible to support the same
-> API in a custom data plane implementation.
+> Note that the above architecture requires a token registry and a small, custom data plane API. This API will be implemented as an EDC Data Plane extension.
 
 ### RBAC Security
 
