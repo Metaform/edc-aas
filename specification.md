@@ -22,7 +22,7 @@ To link to an AAS registry, an IDS dataset may include an `c-x:aasRegistry` prop
       "dct:title": "AAS Asets",
       "dct:description": "Asset Administrtion Shells",
       "odrl:hasPolicy": {...}
-      "c-x:aasRegistry": "https:provider.com/aas",
+      "c-x:aasRegistry": "https://provider.com/aas",
      ...
     }
   ]
@@ -40,7 +40,7 @@ This specification defines AAS interface types using the `c-x:aasInterfaceType` 
       "dct:title": "AAS Asets",
       "dct:description": "Asset Administrtion Shells",
       "odrl:hasPolicy": {...}
-      "c-x:aasRegistry": "https:provider.com/aas",
+      "c-x:aasRegistry": "https://provider.com/aas",
       "c-x:aasInterface": "AAS-REGISTRY",
      ...
     }
