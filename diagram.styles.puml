@@ -18,8 +18,8 @@ LifeLineBackgroundColor #A9DCDF
 
 skinparam roundCorner 10
 
-skinparam ArrowColor $darkGray
-skinparam ArrowHeadColor $darkGray
+skinparam ArrowColor #000000
+skinparam ArrowHeadColor #000000
 skinparam LifeLineBackgroundColor $darkGray
 
 
@@ -41,7 +41,7 @@ skinparam DatabaseFontColor Black
 skinparam ParticipantBorderColor $blue
 skinparam ParticipantBackgroundColor $blueFill
 skinparam SequenceGroupBorderColor #DADADA
-skinparam SequenceGroupHeaderFontColor #898A89
+skinparam SequenceGroupHeaderFontColor #000000
 skinparam BoxPadding 20
 skinparam ParticipantPadding 10
 

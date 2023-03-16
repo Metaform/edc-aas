@@ -1,0 +1,62 @@
+@startuml
+!pragma layout smetana
+
+!include ./diagram.styles.puml
+
+participant "Client" as CLIENT
+participant "IDS Client Connector" as CCONN
+participant "Client Data Plane" as CPLANE
+participant "IDS Provider Catalog" as PCAT
+participant "IDS Provider Connector" as PCONN
+participant "Provider Data Plane" as PPLANE
+participant "AAS Registry" as AASREG
+
+group Usage Control Setup
+
+CLIENT -> CCONN: Get Offers
+group #CFFBDE DS Protocol
+CCONN -> PCAT: Get Offers
+CCONN <- PCAT: Offers
+end
+CLIENT <- CCONN: Offers
+
+CLIENT -> CCONN: Negotiation
+group #CFFBDE DS Protocol
+CCONN -> PCONN: Negotiation
+CCONN <- PCONN: Agreement
+end
+CLIENT <- CCONN: Agreement
+
+CLIENT -> CCONN: Start Transfer Process
+group #CFFBDE DS Protocol
+CCONN -> PCONN: Start Transfer Process
+CCONN <- PCONN: Started w/ data access token
+end
+CCONN -> CPLANE: Data access token
+CLIENT <- CCONN: Started
+
+end
+
+group Data Exchange
+
+CLIENT -> CPLANE: Get Descriptor
+group #F3F7FF AAS Registry Protocol
+CPLANE -> PPLANE: Get Descriptor w/ data access token
+PPLANE -> AASREG: Get Descriptor
+PPLANE <- AASREG: Descriptor
+CPLANE <- PPLANE: Descriptor
+end
+CLIENT <- CPLANE: Descriptor
+
+CLIENT -> CPLANE: Get AAS Asset using Agreement for Dataset ID
+group #F3F7FF AAS Submodel Protocol
+CPLANE -> PPLANE: Get AAS w/ data access token
+PPLANE -> AASREG: Get AAS
+PPLANE <- AASREG: AAS
+CPLANE <- PPLANE: AAS
+end
+CLIENT <- CPLANE: AAS
+
+end
+
+@enduml

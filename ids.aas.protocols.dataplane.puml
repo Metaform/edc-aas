@@ -1,0 +1,40 @@
+@startuml
+!pragma layout smetana
+
+!include ./diagram.styles.puml
+
+participant "Client" as CLIENT
+participant "IDS Client Connector" as CCONN
+participant "IDS Provider Connector" as PCONN
+participant "Client Data Plane" as CPLANE
+participant "Provider Data Plane" as PPLANE
+
+group Usage Control Setup
+group #CFFBDE DS Protocol
+CLIENT -> CCONN: Negotiation + Transfer
+CCONN -> PCONN: Negotiation + Transfer
+CCONN <- PCONN: Agreement + data access token
+end
+end
+
+group Data Exchange
+CLIENT -> CPLANE: Get Descriptor by id
+
+group #F3F7FF AAS Registry Protocol + Usage Control
+CPLANE -> PPLANE: Get Descriptor w/ data access token
+CPLANE <- PPLANE: Descriptor + Dataset ID
+end
+
+CLIENT <- CPLANE: Descriptor + Dataset ID
+
+CLIENT -> CPLANE: Get AAS Asset using Agreement for Dataset ID
+
+group #F3F7FF AAS Submodel Protocol + Usage Control
+CPLANE -> PPLANE: Get AAS w/ data access token
+CPLANE <- PPLANE: AAS
+end
+
+CLIENT <- CPLANE: AAS
+end
+
+@enduml
