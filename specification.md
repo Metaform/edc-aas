@@ -12,7 +12,7 @@ discoverable from and IDS catalog. It also defines two dataset
 
 ### 3.1 AAS Registry entry
 
-To link to an AAS registry, an IDS dataset may include an `c-x:aasRegistry` property of type `xsd:anyURI`:
+To link to an AAS registry, an IDS dataset may include a `c-x:aasRegistry` property of type `xsd:anyURI`:
 
 ```
   "dcat:dataset": [
