@@ -40,7 +40,7 @@ negotiation and establishing a transfer process can be performed upfront and amo
 may conclude a single contract agreement and leave a transfer process open indefinitely while it accesses the market feed on a daily basis to obtain updates.
 
 > In IDS, a single contract negotiation can be conducted upfront and transfer processes remain active for an indefinite timeframe, while a data stream is accessed on a periodic
-> basis. This is referred to as a non-finite data transfer. EDC makes non-finite data transfers cheap from a resource perspective, and they should be favored whenever possible.
+> basis. This is referred to as a non-finite data transfer. IDS makes non-finite data transfers cheap from a resource perspective, and they should be favored whenever possible.
 
 AAS data will be modelled based on this approach.
 
