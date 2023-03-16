@@ -25,6 +25,7 @@ To link to an AAS registry, an IDS dataset may include an `c-x:aasRegistry` prop
       "c-x:aasRegistry": "https:provider.com/aas",
      ...
     }
+  ]
 ```
 
 ### 3.2 AAS types
@@ -43,6 +44,7 @@ This specification defines AAS interface types using the `c-x:aasInterfaceType` 
       "c-x:aasInterface": "AAS-REGISTRY",
      ...
     }
+  ]  
 ```
 
 The valid values for the `aasInterface` property are those defined by "interface" type in the _**Details of the Asset Administration Shell, Part 2**_ specification. 
