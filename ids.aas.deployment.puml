@@ -42,6 +42,7 @@ group Data Exchange
 CLIENT -> CPLANE: Get Descriptor
 group #F3F7FF AAS Registry Protocol
 CPLANE -> PPLANE: Get Descriptor w/ data access token
+PPLANE -> PPLANE: Validate token
 PPLANE -> AASREG: Get Descriptor
 PPLANE <- AASREG: Descriptor
 CPLANE <- PPLANE: Descriptor
@@ -51,6 +52,7 @@ CLIENT <- CPLANE: Descriptor
 CLIENT -> CPLANE: Get AAS Asset using Agreement for Dataset ID
 group #F3F7FF AAS Submodel Protocol
 CPLANE -> PPLANE: Get AAS w/ data access token
+PPLANE -> PPLANE: Validate token
 PPLANE -> AASREG: Get AAS
 PPLANE <- AASREG: AAS
 CPLANE <- PPLANE: AAS
