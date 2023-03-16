@@ -10,7 +10,7 @@ It is **not** a goal of this specification to address syntactic or semantic inte
 The technical specification is devided into the following documents:
 
 1. [An Introduction](introduction.md) outlining the main technical concepts
-2. [An Specification](specification.md) detailing normative technical requirements 
+2. [A Specification](specification.md) detailing normative technical requirements 
 
 
 
