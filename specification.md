@@ -66,7 +66,7 @@ The following is an example of an endpoint entry with IDS `protocolInformation`:
     "endpointProtocolVersion": "0.8",
     "subprotocol": "Dataspace Protocol Specification 0.8",
     "subprotocolBody": "catalogEndpoint=https://test.com/catalog;dataset=79afc338-f7ea-4255-a17d-ba6faf40d2b5",
-    "subprotocolBodyEncoding": "json-ld"
+    "subprotocolBodyEncoding": "plain"
   },
   "interface": "SUBMODEL-1.0"
 }
@@ -78,8 +78,8 @@ The following is an example of an endpoint entry with IDS `protocolInformation`:
 | endpointProtocolVersion | string | The AAS/IDS protocol version supported by the endpoint.                                                                                          |
 | subprotocol             | string | The AAS/IDS protocol description.                                                                                                                |
 | subprotocolBody         | string | A string in the form `catalogEndpoint=;dataset=`, which must contain the catalog endpoint URL and the IDS dataset id the AAS asset is mapped to. |
-| subprotocolBodyEncoding | string | Currently, only `json-ld` is supported.                                                                                                          |
-| interface               | string | The protocol and version, currently `AAS-1.0`.                                                                                                   |
+| subprotocolBodyEncoding | string | Currently, only `plain` is supported.                                                                                                            |
+| interface               | string | The protocol and version, currently `SUBMODEL-1.0`.                                                                                              |
 
 > The `subprotocolBody` attribute is used to specify the IDS catalog endpoint and dataset id for expediency. Our intent is to ask the relevant AAS working group to provide a
 > facility for expressing custom attributes and use that to define two new attributes for this data.
