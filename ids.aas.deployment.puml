@@ -10,6 +10,7 @@ participant "IDS Provider Catalog" as PCAT
 participant "IDS Provider Connector" as PCONN
 participant "Provider Data Plane" as PPLANE
 participant "AAS Registry" as AASREG
+participant "AAS Submodel Endpoints" as AASSM
 
 group Usage Control Setup
 
@@ -53,8 +54,8 @@ CLIENT -> CPLANE: Get AAS Asset using Agreement for Dataset ID
 group #F3F7FF AAS Submodel Protocol
 CPLANE -> PPLANE: Get AAS w/ data access token
 PPLANE -> PPLANE: Validate token
-PPLANE -> AASREG: Get AAS
-PPLANE <- AASREG: AAS
+PPLANE -> AASSM: Get AAS
+PPLANE <- AASSM: AAS
 CPLANE <- PPLANE: AAS
 end
 CLIENT <- CPLANE: AAS
