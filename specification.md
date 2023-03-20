@@ -2,7 +2,7 @@
 
 ## 1. C-X JSON-LD Namespace
 
-The namespace prefix 'c-x' must resolve to `--- insert Catena-X namespace -----`. When an AAS request is made, an HTTP header set to the `authKey` with a value of `authCode`must be
+The namespace prefix 'cx' must resolve to `--- insert Catena-X namespace -----`. When an AAS request is made, an HTTP header set to the `authKey` with a value of `authCode`must be
 present.
 
 ## 2. IDS Catalog
@@ -12,7 +12,7 @@ discoverable from and IDS catalog. It also defines two dataset
 
 ### 3.1 AAS Registry entry
 
-To link to an AAS registry, an IDS dataset may include a `c-x:aasRegistry` property of type `xsd:anyURI`:
+To link to an AAS registry, an IDS dataset may include a `cx:aasRegistry` property of type `xsd:anyURI`:
 
 ```
   "dcat:dataset": [
@@ -22,7 +22,7 @@ To link to an AAS registry, an IDS dataset may include a `c-x:aasRegistry` prope
       "dct:title": "AAS Asets",
       "dct:description": "Asset Administrtion Shells",
       "odrl:hasPolicy": {...}
-      "c-x:aasRegistry": "https://provider.com/aas",
+      "cx:aasRegistry": "https://provider.com/aas",
      ...
     }
   ]
@@ -30,7 +30,7 @@ To link to an AAS registry, an IDS dataset may include a `c-x:aasRegistry` prope
 
 ### 3.2 AAS types
 
-This specification defines AAS interface types using the `c-x:aasInterfaceType` property:
+This specification defines AAS interface types using the `cx:aasInterface` property:
 
 ```
   "dcat:dataset": [
@@ -40,8 +40,8 @@ This specification defines AAS interface types using the `c-x:aasInterfaceType` 
       "dct:title": "AAS Asets",
       "dct:description": "Asset Administrtion Shells",
       "odrl:hasPolicy": {...}
-      "c-x:aasRegistry": "https://provider.com/aas",
-      "c-x:aasInterface": "AAS-REGISTRY",
+      "cx:aasRegistry": "https://provider.com/aas",
+      "cx:aasInterface": "AAS-REGISTRY",
      ...
     }
   ]  
@@ -91,8 +91,8 @@ the `DataAddress` to be a JSON object type encoded as JSON-LD with the following
 
 | Key          | Value                                     |
 |--------------|-------------------------------------------|
-| c-x:authKey  | The authorization HTTP header name to use |
-| c-x:authCode | The authorization header token            |
+| cx:authKey  | The authorization HTTP header name to use |
+| cx:authCode | The authorization header token            |
 
 ## 6. Authorization
 
