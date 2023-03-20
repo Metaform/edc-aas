@@ -68,7 +68,7 @@ The following is an example of an endpoint entry with IDS `protocolInformation`:
     "subprotocolBody": "catalogEndpoint=https://test.com/catalog;dataset=79afc338-f7ea-4255-a17d-ba6faf40d2b5",
     "subprotocolBodyEncoding": "json-ld"
   },
-  "interface": "AAS-1.0"
+  "interface": "SUBMODEL-1.0"
 }
 ```
 
