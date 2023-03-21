@@ -1,6 +1,6 @@
 # Introduction: Catena-X Technical Specification for Applying IDS Usage Control to AAS data
 
-This document services as an introduction to the technical specification for enabling IDS usage control with AAS. The goals of the specification are to define an AAS-IDS
+This document serves as an introduction to the technical specification for enabling IDS usage control with AAS. The goals of the specification are to define an AAS-IDS
 integration that:
 
 1. Codifies best-practices for modelling AAS submodels as IDS datasets.
