@@ -4,8 +4,8 @@
 !include ./diagram.styles.puml
 
 participant "Client" as CLIENT
-participant "IDS Client Connector" as CCONN
-participant "IDS Provider Connector" as PCONN
+participant "DSP Client Connector" as CCONN
+participant "DSP Provider Connector" as PCONN
 participant "Provider AAS Systems" as PROVIDER
 
 group Usage Control Setup

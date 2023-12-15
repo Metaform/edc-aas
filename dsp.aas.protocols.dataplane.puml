@@ -4,8 +4,8 @@
 !include ./diagram.styles.puml
 
 participant "Client" as CLIENT
-participant "IDS Client Connector" as CCONN
-participant "IDS Provider Connector" as PCONN
+participant "DSP Client Connector" as CCONN
+participant "DSP Provider Connector" as PCONN
 participant "Client Data Plane" as CPLANE
 participant "Provider Data Plane w/ AAS" as PPLANE
 
